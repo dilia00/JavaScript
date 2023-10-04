@@ -17,7 +17,7 @@
 const array = [];
 
 for (let i = 0; i < 5; i++) {
-    array.push(Math.floor(Math.random() * 9));
+    array.push(Math.floor(Math.random() * 10));
 }
 
 console.log(array);
@@ -27,6 +27,8 @@ console.log(`Сумма элементов массива ровна: ${sumEl}`)
 const minEl = Math.min(...array);
 console.log(`Минимальный элемент - ${minEl}`);
 
-const newArr = [];
-array.filter((el, i) => el === 3 ? newArr.push(i) : i);
+const newArr = array.reduce((acc, el, i) => {
+    if (el === 3) acc.push(i);
+    return acc;
+}, []);
 console.log(newArr);
