@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .content {
+        width: 1000px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-content: center;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .cards {
+        border: 1px solid black;
+        width: 175px;
+        text-align: center;
+      }
+      .card__img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content"></div>
+
+    <script src="data.js"></script>
+
+    <script>
+      const data = JSON.parse(dataInfo);
+      const contentEl = document.querySelector(".content");
+
+      data.forEach((element) => {
+        const cardsEl = document.createElement("div");
+        cardsEl.classList.add("cards");
+
+        const cardId = document.createElement("p");
+        cardId.classList.add("card__id");
+        cardId.textContent = `id: ${element.id}`;
+
+        const cardTitle = document.createElement("h2");
+        cardTitle.classList.add("card__title");
+        cardTitle.textContent = element.title;
+
+        const cardUserName = document.createElement("h4");
+        cardUserName.classList.add("card__userName");
+        cardUserName.textContent = `username: ${element.userName}`;
+
+        const cardImg = document.createElement("img");
+        cardImg.classList.add("card__img");
+        cardImg.setAttribute("alt", element.title);
+        cardImg.src = element.imageUrl;
+
+        cardsEl.appendChild(cardImg);
+        cardsEl.appendChild(cardId);
+        cardsEl.appendChild(cardUserName);
+        cardsEl.appendChild(cardTitle);
+        contentEl.appendChild(cardsEl);
+      });
+    </script>
+  </body>
+</html>
